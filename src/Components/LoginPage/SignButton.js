@@ -1,6 +1,5 @@
 import React from 'react';
 import './SignButton.css';
-import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 
@@ -10,7 +9,7 @@ function SignButton(props) {
     return (
         props.withIcon ?
             <div className='SignButton' onClick={()=>navigate('/Home')}>
-                <img src = {props.icon}/>
+                <img src = {props.icon} alt="icon"/>
                 {props.message}
             </div>
             :

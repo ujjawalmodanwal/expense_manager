@@ -1,0 +1,16 @@
+.card-section{
+    position: relative;
+    margin: auto;
+    margin-top: 7vh;
+    display: flex;
+    justify-content: center;
+    justify-items:left;
+    flex-wrap: wrap;
+    width: 80vw;
+    
+
+}
+
+.home-wrapper{
+    
+}
