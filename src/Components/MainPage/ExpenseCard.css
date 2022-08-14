@@ -1,11 +1,101 @@
-.expensecard{
+.expenseCard{
+    display: flex;
+    flex-direction: column;
     position:relative;
     width: 25vh;
     height: 25vh;
     border-radius: 5px;
     margin: 5vh;
     cursor: pointer;
+    align-items: center;
+}
+
+.expenseCard-addCard{
+    display: flex;
+    flex-direction: column;
+    position:relative;
+    width: 25vh;
+    height: 25vh;
+    border-radius: 5px;
+    margin: 5vh;
+    align-items: center;
 }
 
 .expensecard-wrapper{
+}
+
+.expenseCard-title{
+    position: relative;
+    font-size: 3vh;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden !important;
+    margin: 0 2vh 0 2vh;
+    top: 6vh;
+    height: 4vh;
+}
+
+.expenseCard-totalSpent{
+    font-size: 2vh;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    height: 3vh;
+    bottom: 1vh;
+    width: 20vh;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+    margin: 0 2vh 0 2vh;
+}
+.expenseCard-Pricetag{
+    position: absolute;
+    bottom: 4.5vh;
+}
+
+.expenseCard-textfield{
+    margin: 2vh;
+    width: 16vh;
+}
+
+.expenseCard-cancelIcon{
+    position: absolute;
+    top: 0.1vh;
+    right: 0.1vh;
+    width: 2vh;
+    height: 2vh;
+    cursor: pointer;
+}
+.expenseCard-cancelIcon:hover{
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color:rgb(185, 224, 252);
+}
+
+.expenseCard-plusIcon{
+    position: absolute;
+    height: 7vh;
+    width: 7vh;
+    bottom: 6vh;
+    
+}
+
+.expenseCard-saveButton{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 1vh;
+    right: 1vh;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 7vh;
+    height: 3vh;
+    font-size: 2vh;
+    background-color: white;
+    cursor: pointer;
+}
+
+.expenseCard-saveButton:hover{
+    background-color: rgb(185, 224, 252);
 }
