@@ -4,6 +4,7 @@ import Modals from './ExpenseCardModal';
 import Modal from "@mui/material/Modal";
 import closeIcon from '../../Resources/Images/close_icon.png';
 import plusIcon from '../../Resources/Images/plus_icon.png';
+import menu_dots from '../../Resources/Images/three_dots.png';
 import TextField from '@mui/material/TextField';
 
 
@@ -17,6 +18,33 @@ function ExpenseCard(props) {
 
 	const handleCardSaving =()=>{
 		console.log('Saving new card data...');
+	}
+
+	const [isMenu, setIsMenu] = useState(false);
+	const handleMenuClick =()=>{
+		console.log("Menu click detected...")
+		setIsMenu(!isMenu);
+	}
+	const getModalWindow =(isMenu)=>{
+		console.log(isMenu)
+		if(!isMenu){
+			return (
+				<Modal open={isOpen}>
+					<Modals handleClick={()=>handleClickOnCard()} />
+				</Modal>
+			)
+		}
+		else {
+			return (
+				<div className='expenseCard-menu-window'>
+					<div className='expenseCard-menuBox'>Rename card</div>
+					<div className='expenseCard-menuBox'>Delete</div>
+					<div className='expenseCard-menuBox'>Select duration</div>
+					<div className='expenseCard-menuBox'>Color</div>
+
+				</div>
+			)
+		}
 	}
   	return (
 		<div className='expensecard-wrapper'>
@@ -34,10 +62,11 @@ function ExpenseCard(props) {
 								<div className='expenseCard-totalSpent'>
 									Rs. {props.totalSpent}
 								</div>
+								<img className='expenseCard-menuDots' src={menu_dots} onClick={()=>handleMenuClick()}/>
+								{getModalWindow(isMenu)}
 							</div>
-							<Modal open={isOpen}>
-								<Modals handleClick={handleClickOnCard}/>
-							</Modal>
+							
+							
 						</div>
 					:
 						!isOpen ?

@@ -99,3 +99,45 @@
 .expenseCard-saveButton:hover{
     background-color: rgb(185, 224, 252);
 }
+
+.expenseCard-menuDots{
+    position: absolute;
+    right: 0.5vh;
+    height: 2vh;
+    width: 2vh;
+}
+
+.expenseCard-menuDots:hover{
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: rgba(175, 175, 175, 0.366);
+}
+
+.expenseCard-menu-window{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    height: 20vh;
+    width: 19vh;
+    background-color: rgb(212, 228, 251);
+    left:19vh;
+    top:-1vh;
+    border: 2px solid blue;
+    border-radius: 5px;   
+}
+
+.expenseCard-menuBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
+    width: 19vh;
+    overflow: hidden ;
+}
+.expenseCard-menuBox:hover{
+    background-color: rgb(95, 95, 247);
+    color: white;
+}
