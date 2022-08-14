@@ -1,7 +1,11 @@
-.expensecard-wrapper{
+.expensecard{
     position:relative;
     width: 25vh;
     height: 25vh;
     border-radius: 5px;
     margin: 5vh;
+    cursor: pointer;
+}
+
+.expensecard-wrapper{
 }

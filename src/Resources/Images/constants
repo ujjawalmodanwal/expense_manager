@@ -1,0 +1,41 @@
+const expense_cards_data = [
+    {
+        "card_id": 1,
+        "title": "XYZ",
+        "total_price": 2340
+    },
+    {
+        "card_id": 2,
+        "title": "XYZ",
+        "total_price": 2340
+    },
+    {
+        "card_id": 3,
+        "title": "XYZ",
+        "total_price": 2340
+    },
+    {
+        "card_id": 4,
+        "title": "XYZ",
+        "total_price": 2340
+    },
+    {
+        "card_id": 5,
+        "title": "XYZ",
+        "total_price": 2340
+    },
+    {
+        "card_id": 6,
+        "title": "XYZ",
+        "total_price": 2340
+    },
+    {
+        "card_id": 7,
+        "title": "XYZ",
+        "total_price": 2340
+    }
+];
+
+export{
+    expense_cards_data,
+};
