@@ -11,10 +11,14 @@
 
 .modal-window-wrapper{
     position: relative;
+    display:flex ;
+    flex-direction: column;
+    align-items: center;
     background-color: white;
     height: 70vh;
     width:100vh;
     border-radius: 5px;
+    overflow: scroll;
 }
 .modal-close-icon{
     position: absolute;
@@ -24,3 +28,59 @@
     cursor: pointer !important
 }
 
+.modal-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 86vh;
+    height: 50vh;
+    margin: 5vh 2vh 0 2vh;
+}
+
+
+.menu-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4vh;
+    border: 2px solid blue;
+    background-color: rgb(186, 225, 255);
+    margin-top: 0.2vh;
+    border-radius: 5px;
+  }
+
+  .menu-button:hover{
+    background-color: blue;
+    color: white;
+  }
+
+  .row-menu-box{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 200;
+    width: 76vh;
+    margin-top: 2vh;
+}
+
+.table-edit-menu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
+  width: 10vh;
+  border: 2px solid blue;
+  background-color: rgb(186, 225, 255);
+  border-radius: 5px;
+  overflow: hidden ;
+}
+.table-edit-menu:hover{
+  background-color: rgb(0, 0, 255);
+  color: white;
+}
+
+.modal-footer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2vh;
+}

@@ -21,27 +21,29 @@ function ExpenseCard(props) {
 	}
 
 	const [isMenu, setIsMenu] = useState(false);
+	
 	const handleMenuClick =()=>{
 		console.log("Menu click detected...")
 		setIsMenu(!isMenu);
 	}
 	const getModalWindow =(isMenu)=>{
-		console.log(isMenu)
 		if(!isMenu){
 			return (
-				<Modal open={isOpen}>
-					<Modals handleClick={()=>handleClickOnCard()} />
+				<Modal open={isOpen} onClose={handleClickOnCard} >
+					<Modals handleClick={handleClickOnCard} />
 				</Modal>
 			)
 		}
-		else {
+	}
+
+	const getMenuWindow=(isMenu)=>{
+		if(isMenu){
 			return (
 				<div className='expenseCard-menu-window'>
 					<div className='expenseCard-menuBox'>Rename card</div>
 					<div className='expenseCard-menuBox'>Delete</div>
 					<div className='expenseCard-menuBox'>Select duration</div>
 					<div className='expenseCard-menuBox'>Color</div>
-
 				</div>
 			)
 		}
@@ -53,7 +55,7 @@ function ExpenseCard(props) {
 						<div>
 							<div className='expenseCard' 
 								style={{backgroundColor:`${props.color}`}}
-								onClick= {()=>handleClickOnCard()}>
+								onClick= {handleClickOnCard}>
 							
 								<div className='expenseCard-title'>
 									{props.title}
@@ -62,9 +64,10 @@ function ExpenseCard(props) {
 								<div className='expenseCard-totalSpent'>
 									Rs. {props.totalSpent}
 								</div>
-								<img className='expenseCard-menuDots' src={menu_dots} onClick={()=>handleMenuClick()}/>
-								{getModalWindow(isMenu)}
+								<img className='expenseCard-menuDots' src={menu_dots} onClick={handleMenuClick}/>
+								{getMenuWindow(isMenu)}
 							</div>
+							{getModalWindow(isMenu)}
 							
 							
 						</div>
@@ -72,7 +75,7 @@ function ExpenseCard(props) {
 						!isOpen ?
 							<div className='expenseCard' 
 								style={{backgroundColor:`${props.color}`}}
-								onClick= {()=>handleClickOnCard()}>
+								onClick= {handleClickOnCard}>
 								<div className='expenseCard-title'>
 									{props.title}
 								</div>
@@ -85,8 +88,8 @@ function ExpenseCard(props) {
 									<TextField id="standard-basic" label="Field" variant="standard" size="small"/>
 									<TextField id="standard-basic" label="Card color" variant="standard" size="small"/>
 								</div>
-								<img className='expenseCard-cancelIcon' src={closeIcon} onClick= {()=>handleClickOnCard()}/>
-								<div className='expenseCard-saveButton' onClick={()=>handleCardSaving()}>Save</div>
+								<img className='expenseCard-cancelIcon' src={closeIcon} onClick= {handleClickOnCard}/>
+								<div className='expenseCard-saveButton' onClick={handleCardSaving}>Save</div>
 							</div>
 
 				}	

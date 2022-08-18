@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useState}from 'react';
 import './ExpenseCardModal.css';
 import closeIcon from '../../Resources/Images/close_icon.png';
+import ModalTable from './ModalTable';
 
 function ExpenseCardModal(props) {
+	const [openMenu, setOpenMenu] = useState(false)
+   
     
   return (
         <div className='modal-overlay'>
@@ -10,8 +13,12 @@ function ExpenseCardModal(props) {
                 <div className='modal-header'>
                     <img src = {closeIcon} className='modal-close-icon' alt='closeIcon' onClick={props.handleClick}/>
                 </div>
-                <div className='modal-body'></div>
-                <div className='modal-footer'></div>
+                <div className='modal-body'>
+                    <ModalTable/>
+                </div>
+                <div className='modal-footer'>
+                    Total Spent:
+                </div>
             </div>
         </div>
   )

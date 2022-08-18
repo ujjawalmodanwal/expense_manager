@@ -67,9 +67,10 @@
     cursor: pointer;
 }
 .expenseCard-cancelIcon:hover{
-    border: 1px solid black;
+    border: 1px solid blue;
     border-radius: 5px;
-    background-color:rgb(185, 224, 252);
+    background-color: rgb(95, 95, 247);
+    color: white;
 }
 
 .expenseCard-plusIcon{
@@ -87,7 +88,7 @@
     align-items: center;
     bottom: 1vh;
     right: 1vh;
-    border: 1px solid black;
+    border: 1px solid blue;
     border-radius: 5px;
     width: 7vh;
     height: 3vh;
@@ -97,7 +98,8 @@
 }
 
 .expenseCard-saveButton:hover{
-    background-color: rgb(185, 224, 252);
+    background-color: rgb(95, 95, 247);
+    color: white;
 }
 
 .expenseCard-menuDots{

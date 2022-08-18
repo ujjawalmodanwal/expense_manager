@@ -1,5 +1,3 @@
-import { blue } from "@mui/material/colors";
-
 const expense_cards_data = [
     {
         "card_id": 1,
@@ -45,6 +43,40 @@ const expense_cards_data = [
     }
 ];
 
+const table_data = [
+    {
+    "id": 1,
+    "Goods": "Cobalt",
+    "Price": 33,
+    "Date": "5/11/2022"
+  }, {
+    "id": 2,
+    "Goods": "Camaro",
+    "Price": 80,
+    "Date": "10/28/2021"
+  }, {
+    "id": 3,
+    "Goods": "GranTurismo",
+    "Price": 64,
+    "Date": "5/1/2022"
+  }, {
+    "id": 4,
+    "Goods": "5 Series",
+    "Price": 85,
+    "Date": "2/2/2022"
+  }, {
+    "id": 5,
+    "Goods": "ES",
+    "Price": 67,
+    "Date": "5/26/2022"
+  }, {
+    "id": 6,
+    "Goods": "944",
+    "Price": 69,
+    "Date": "12/4/2021"
+  }]
+
 export{
     expense_cards_data,
+    table_data,
 };
