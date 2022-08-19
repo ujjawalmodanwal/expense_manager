@@ -83,23 +83,8 @@
 
 .expenseCard-saveButton{
     position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    bottom: 1vh;
-    right: 1vh;
-    border: 1px solid blue;
-    border-radius: 5px;
-    width: 7vh;
-    height: 3vh;
-    font-size: 2vh;
-    background-color: white;
-    cursor: pointer;
-}
-
-.expenseCard-saveButton:hover{
-    background-color: rgb(95, 95, 247);
-    color: white;
+    bottom: -2vh;
+    right: -10vh;
 }
 
 .expenseCard-menuDots{
@@ -122,11 +107,10 @@
     justify-content: center;
     align-items: center;
     z-index: 200;
-    height: 20vh;
-    width: 19vh;
+    width: 10vh;
     background-color: rgb(212, 228, 251);
-    left:19vh;
-    top:-1vh;
+    left:16vh;
+    top:-2vh;
     border: 2px solid blue;
     border-radius: 5px;   
 }
@@ -136,7 +120,7 @@
     justify-content: center;
     align-items: center;
     height: 5vh;
-    width: 19vh;
+    width: 10vh;
     overflow: hidden ;
 }
 .expenseCard-menuBox:hover{

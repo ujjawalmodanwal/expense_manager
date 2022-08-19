@@ -1,4 +1,4 @@
-const expense_cards_data = [
+const CardsData = [
     {
         "card_id": 1,
         "title": "Travel",
@@ -77,6 +77,6 @@ const table_data = [
   }]
 
 export{
-    expense_cards_data,
+    CardsData,
     table_data,
 };

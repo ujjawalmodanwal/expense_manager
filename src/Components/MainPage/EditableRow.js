@@ -1,39 +1,43 @@
-import React from 'react'
+import React from 'react';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 function EditableRow({Id, editFormData, handleEditFormChange, handleCancelClick}) {
+
+    const boxStyle = {maxWidth: '8vh !important', maxHeight:'2vh !important', minWidth: '8vh !important', minHeight: '2vh !important'}
     return (
     <tr>
         <td>
             {Id}
         </td>
         <td>
-            <input
-                type="text"
-                required="required"
-                placeholder="Enter goods ..."
+            <TextField
+                style = {boxStyle}
+                variant="outlined"
                 name="Goods"
+                label="Enter Goods"
                 defaultValue={editFormData.Goods}
-                onChange={handleEditFormChange}
+                onChange={(event)=>handleEditFormChange(event, editFormData)}
             />
         </td>
         <td>
-            <input
-                type="number"
-                required="required"
-                placeholder="Enter price ..."
+            <TextField
+                style = {boxStyle}
+                variant="outlined"
                 name="Price"
+                label="Enter Price"
                 defaultValue={editFormData.Price}
-                onChange={handleEditFormChange}
+                onChange={(event)=>handleEditFormChange(event, editFormData)}
             />
         </td>
         <td>
-            <input
-                type="text"
-                required="required"
-                placeholder="Enter date ..."
+            <TextField
+                style = {boxStyle}
+                variant="outlined"
                 name="Date"
+                label="Enter Date"
                 defaultValue={editFormData.Date}
-                onChange={handleEditFormChange}
+                onChange={(event)=>handleEditFormChange(event, editFormData)}
             />
         </td>
         <td>
