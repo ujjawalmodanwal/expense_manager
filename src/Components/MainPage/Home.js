@@ -1,14 +1,28 @@
-import React, {useState, Fragment} from 'react';
+import React, {useState, Fragment, useEffect} from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import ExpenseCard from './ExpenseCard';
 import './Home.css';
-import  {CardsData}  from '../../Resources/Constants/constants';
 import EditableCard from './EditableCard';
+import axios from 'axios';
 
 function Home() {
 
-	const [cardsData, updateCardsData] = useState(CardsData);
+
+
+	const fetchData = async()=>{
+		const {data} = await axios.get("/data")
+		const CardsData = data.CardsData;
+		updateCardsData(CardsData);
+	}
+	useEffect(()=>{
+		fetchData();
+	}, [])
+	
+
+
+	
+	const [cardsData, updateCardsData] = useState([]);
 	const NumberOfCards= cardsData.length;
 
 	const [isAddCard, setIsAddCard] = useState(true);

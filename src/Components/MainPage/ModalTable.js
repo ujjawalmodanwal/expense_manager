@@ -1,21 +1,26 @@
-import React, {useState, Fragment} from 'react';
-import  {table_data} from '../../Resources/Constants/constants';
+import React, {useState, Fragment, useEffect} from 'react';
 import ReadOnlyRow from './ReadOnlyRow';
 import EditableRow from './EditableRow';
 import './ModalTable.css';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import axios from 'axios';
 function Table() {
-	const [datas, setData] = useState(table_data)
+
+
+
+	const fetchData = async()=>{
+		const {data} = await axios.get("/data")
+		const table_data = data.table_data;
+		setData(table_data);
+	}
+	useEffect(()=>{
+		fetchData();
+	}, [])
+
+
+	const [datas, setData] = useState([])
 	const newId = datas.length+1;
-
-
-
-
-
-
-
-
 	const [addFormData, setAddFormData] = useState({
 		 Goods:'',
 		 Price:'',
@@ -43,13 +48,6 @@ function Table() {
 		const newData = [...datas, newRow ];
 		setData(newData);
 	};
-
-
-
-
-
-
-
 
 
 	const [editFormData, setEditFormData]= useState({
@@ -94,11 +92,6 @@ function Table() {
 	const handleCancelClick =()=>{
 		setEditRowId(null);
 	}
-
-
-
-
-
 
 
 	const handleDeleteClick = (rowDataId)=>{

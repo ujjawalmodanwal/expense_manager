@@ -1,42 +1,40 @@
 import React from 'react';
-import { Container } from 'semantic-ui-react';
-import "./Login.css";
+import './Login.css';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import SignButton from './SignButton';
 import Google from '../../Resources/Images/google_logo.png';
-import Apple from '../../Resources/Images/apple_logo.png';
 
 function Login() {
-    return (
-        <div className='main-container'>
-            <Container className='leftPanel'>
-
-            </Container>
-            <Container className='rightPanel'>
-                <div className = 'mainCall'>
-                    Want to analyse your expenses?
+  const styleTextField={maxWidth: '45vh', maxHeight:'10vh', minWidth:'45vh', minHeight:'10vh', marginLeft:'4vh'};
+  return (
+    <div className='main-container'>
+        <div className='left-panel'></div>
+        <div className='right-panel'>
+            <div className = 'mainCall'>
+                Want to analyse your expenses?
+            </div>
+            <div className='subcall1'>
+                Login
+            </div>
+            <TextField id="outlined-basic" label="Email" style={styleTextField} variant="outlined" />
+            <TextField id="outlined-basic" label="Password" style={styleTextField} variant="outlined" />
+            <div className='action-buttons'>
+                <Button style={{maxWidth: '15vh', maxHeight:'6vh', minWidth:'15vh', minHeight:'6vh', marginLeft:'4vh', fontWeight:'bold'}}variant="contained" >Login</Button>
+                <div className='forgot-password'>
+                    Forgot Password?
+                <Button style={{maxWidth: '8vh', maxHeight:'4vh', minWidth:'8vh', minHeight:'4vh', margin:'1vh 0 0 5vh', fontWeight:'bold'}}variant="contained" >Click</Button>
                 </div>
-                <div className='subcall1'>
-                    Join Us Today.
-                </div>
-                <SignButton message = 'Sign up with Google' withIcon = {1} signin={0} icon={Google}/>
-                <SignButton message = 'Sign up with Apple' withIcon = {1} signin={0} icon={Apple}/>
-                <div className='or-separator'>
-                    <div className='or1'></div>
-                        or
-                    <div className='or2'></div>
-                </div>
-                <SignButton message = 'Sign up with Phone or Email' withIcon = {0} signin={0} />
-                <div className='terms-and-condition'>
-                    By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use.
-                </div>
-
-                <div className='account-sign-in'>
-                    Already have an account?
-                </div>
-                <SignButton message ='Sign in' withIcon = {0} signin = {1}/> 
-            </Container>
+                
+            </div>
+            <div className='account-register'>
+                New User?
+            </div>
+            <SignButton message ='Register' withIcon = {0} signin = {0}/> 
+            <SignButton message = 'Sign up with Google' withIcon = {1} signin={0} icon={Google}/>
         </div>
-    )
+    </div>
+  )
 }
 
 export default Login

@@ -8,17 +8,17 @@ function SignButton(props) {
     const navigate = useNavigate();
     return (
         props.withIcon ?
-            <div className='SignButton' onClick={()=>navigate('/Home')}>
+            <div className='SignButton' onClick={()=>navigate('/Register')}>
                 <img src = {props.icon} alt="icon"/>
                 {props.message}
             </div>
             :
         props.signin!==1?
-            <div className='SignButton-Email' onClick={()=>navigate('/Home')}>
+            <div className='SignButton-Email' onClick={()=>navigate('/Register')}>
                 {props.message}
             </div>
             :
-            <div className='Signin-already' onClick={()=>navigate('/Home')}>
+            <div className='Signin-already' onClick={()=>navigate('/Login')}>
                 {props.message}
             </div>
 
