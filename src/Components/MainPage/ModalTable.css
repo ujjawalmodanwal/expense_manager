@@ -37,3 +37,45 @@ table {
   width: 80vh;
   margin: 7vh 0 0 3vh;
 }
+.add-new-data{
+  margin: 0;
+}
+
+@media(max-width: 880px){
+  table {
+    font-size: 1.5vh;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 40vh;
+  }
+  table td, table th {
+    border: 1px solid #ddd;
+    padding: 0.5vh;
+    text-align: center;
+  }
+  table th {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    text-align: center;
+    background-color: #122b9a;
+    color: white;
+  }
+  .modal-table-body{
+    width: 42vh;
+    height: 23vh;
+    overflow: scroll;
+  }
+  .table-new-row{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 30vh;
+    width: 40vh;
+    margin: 5vh 1vh 1vh 1vh;
+  }
+  .add-new-data{
+    position: relative;
+    bottom: -3vh;
+  }
+}

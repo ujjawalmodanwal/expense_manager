@@ -23,7 +23,7 @@
     margin: 4vw 0 1vw 2vw;
 }
 .account-register{
-    margin: 5vw 0 2vw 2vw !important;
+    margin: 2vw 0 2vw 2vw !important;
     font-size: 1.2vw;
     font-weight: 800;
 }
@@ -38,4 +38,54 @@
     flex-direction: column;
     justify-content: space-evenly;
     height: 6vh;
+}
+
+@media(max-width: 880px){
+    .main-container{
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .left-panel{
+        position: absolute;
+        background-color: #0093cd;
+        width:100%;
+        bottom: 0vh !important;
+    }
+    .right-panel{
+        position: absolute;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        background-color: white;
+    }
+    .mainCall{
+        font-size: 8vw !important;
+        font-weight: 800 !important;
+        margin: 2vh !important;
+        width: 42vh!important;
+    }
+    .subcall1{
+        font-size: 5vw;
+        font-weight: 800;
+        margin: 2vh;
+    }
+
+    .account-sign-in{
+        margin-top: 6vh;
+        font-size: 2.2vh;
+        font-weight: 800;
+    }
+    .action-buttons{
+        width: 35vh;
+    }
+    .account-register{
+        margin-top: 6vh !important;
+        font-size: 4.2vw;
+        font-weight: 800;
+    }
+
 }

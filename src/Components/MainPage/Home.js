@@ -15,12 +15,10 @@ function Home() {
 		const CardsData = data.CardsData;
 		updateCardsData(CardsData);
 	}
+	
 	useEffect(()=>{
 		fetchData();
 	}, [])
-	
-
-
 	
 	const [cardsData, updateCardsData] = useState([]);
 	const NumberOfCards= cardsData.length;

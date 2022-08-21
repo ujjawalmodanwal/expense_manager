@@ -4,8 +4,8 @@
     align-items: center;
     border: 1px solid darkgrey;
     border-radius: 50px;
-    width: 300px;
-    height: 35px;
+    width: 44vh;
+    height: 5.5vh;
     margin: 1vh 0 1vh 2vw;
     cursor: pointer;
 }
@@ -29,8 +29,8 @@ img{
     align-items: center;
     border: 1px solid darkgrey;
     border-radius: 50px;
-    width: 300px;
-    height: 35px;
+    width: 44vh;
+    height: 5.5vh;
     margin: 1vh 0 1vh 2vw;
     cursor: pointer;
 }
@@ -47,11 +47,24 @@ img{
     align-items: center;
     border: 1px solid darkgrey;
     border-radius: 50px;
-    width: 300px;
-    height: 35px;
+    width: 44vh;
+    height: 5.5vh;
     margin: 1vh 0 1vh 2vw;
     cursor: pointer;
 }
 .Signin-already:hover{
     background-color: rgb(232, 232, 232);
+}
+
+
+@media (max-width: 880px){
+    .Signin-already{
+        margin: 0 0 2vh 0;
+    }
+    .SignButton{
+        margin: 0 0 2vh 0;
+    }
+    .SignButton-Email{
+        margin: 0 0 2vh 0;
+    }    
 }

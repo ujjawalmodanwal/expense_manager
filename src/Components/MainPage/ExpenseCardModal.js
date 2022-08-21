@@ -17,7 +17,7 @@ function ExpenseCardModal(props) {
                     <ModalTable/>
                 </div>
                 <div className='modal-footer'>
-                    <h4 style={{margin:'0'}}>Total Spent:</h4>
+                    <h4 className='total-spent'>Total Spent:</h4>
                 </div>
             </div>
         </div>

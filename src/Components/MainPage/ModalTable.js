@@ -105,9 +105,23 @@ function Table() {
 		}
 		setData(newDatas);
 	}
+ 
+	const windowWidth = window.innerWidth;
+	const getTextFieldStyle  = () =>{
+		if(windowWidth>880){
+			return ({height:'1vh', width:'20vh', margin:'1vh 1vh 0 0' })
+		}
+		else return ({minHeight:'2vh', minWidth:'30vh',maxHeight:'2vh', maxWidth:'30vh', margin:'2vh 0 0 0' })
+	} 
 
-
-	const boxStyle = {height:'1vh', width:'20vh', margin:'1vh 1vh 0 0' }
+	const getButtonStyle = () =>{
+		if(windowWidth>880){
+			return ({margin:'1vh', height:'5vh', width:'6vw' })
+		}
+		else{
+			return ({ maxHeight:'3vh', minHeight:'3vh', minWidth:'10vh', maxWidth:'10vh', marginTop: '2vh' })
+		}
+	}
 
 	return (
 		<div>
@@ -138,17 +152,17 @@ function Table() {
 				</form>
 			</div>
 			<div className='table-new-row'>
-				<h4 style={{margin:'0'}}>Add New Data</h4>
+				<h4 className='add-new-data'>Add New Data</h4>
 				<TextField id="outlined-basic" 
 							name ="Goods" 
 							label="Enter Goods" 
 							size="small" 
 							variant="outlined" 
 							onChange={(event)=>handleAddFormChange(event)}
-							style={boxStyle}/> 
-				<TextField id="outlined-basic" name = "Price" label="Enter Price" size="small" variant="outlined" onChange={(event)=>handleAddFormChange(event)} style={boxStyle}/> 
-				<TextField id="outlined-basic" name = "Date" label="Enter Date" size="small" variant="outlined" onChange={(event)=>handleAddFormChange(event)} style={boxStyle}/>
-				<Button variant="contained" style={{margin:'1vh', height:'5vh', width:'6vw' }}onClick= {(event)=>{handleAddFormSubmit(event)}}>Submit</Button>
+							style={getTextFieldStyle()}/> 
+				<TextField id="outlined-basic" name = "Price" label="Enter Price" size="small" variant="outlined" onChange={(event)=>handleAddFormChange(event)} style={getTextFieldStyle()}/> 
+				<TextField id="outlined-basic" name = "Date" label="Enter Date" size="small" variant="outlined" onChange={(event)=>handleAddFormChange(event)} style={getTextFieldStyle()}/>
+				<Button variant="contained" style={getButtonStyle()}onClick= {(event)=>{handleAddFormSubmit(event)}}>Submit</Button>
 			</div>
 		</div>
 	)

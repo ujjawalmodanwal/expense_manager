@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Container } from 'semantic-ui-react';
 import "./Welcome.css";
 import SignButton from './SignButton';
 import Google from '../../Resources/Images/google_logo.png';
 import Apple from '../../Resources/Images/apple_logo.png';
+import { useNavigate } from "react-router-dom";
 
 function Welcome() {
+
     return (
         <div className='main-container'>
             <Container className='leftPanel'>
