@@ -111,7 +111,7 @@ function Table() {
 		if(windowWidth>880){
 			return ({height:'1vh', width:'20vh', margin:'1vh 1vh 0 0' })
 		}
-		else return ({minHeight:'2vh', minWidth:'30vh',maxHeight:'2vh', maxWidth:'30vh', margin:'2vh 0 0 0' })
+		else return ({minHeight:'23px', minWidth:'218px',maxHeight:'23px', maxWidth:'218px', margin:'20px 0 0 0' })
 	} 
 
 	const getButtonStyle = () =>{
@@ -119,7 +119,7 @@ function Table() {
 			return ({margin:'1vh', height:'5vh', width:'6vw' })
 		}
 		else{
-			return ({ maxHeight:'3vh', minHeight:'3vh', minWidth:'10vh', maxWidth:'10vh', marginTop: '2vh' })
+			return ({ maxHeight:'23px', minHeight:'23px', minWidth:'77px', maxWidth:'77px', marginTop: '15.488px' })
 		}
 	}
 
@@ -155,13 +155,14 @@ function Table() {
 				<h4 className='add-new-data'>Add New Data</h4>
 				<TextField id="outlined-basic" 
 							name ="Goods" 
+							type='text'
 							label="Enter Goods" 
 							size="small" 
 							variant="outlined" 
 							onChange={(event)=>handleAddFormChange(event)}
 							style={getTextFieldStyle()}/> 
-				<TextField id="outlined-basic" name = "Price" label="Enter Price" size="small" variant="outlined" onChange={(event)=>handleAddFormChange(event)} style={getTextFieldStyle()}/> 
-				<TextField id="outlined-basic" name = "Date" label="Enter Date" size="small" variant="outlined" onChange={(event)=>handleAddFormChange(event)} style={getTextFieldStyle()}/>
+				<TextField id="outlined-basic" type='number' name = "Price" label="Enter Price" size="small" variant="outlined" onChange={(event)=>handleAddFormChange(event)} style={getTextFieldStyle()}/> 
+				<TextField id="outlined-basic" type='date' name = "Date" label="Enter Date" size="small" variant="outlined" onChange={(event)=>handleAddFormChange(event)} style={getTextFieldStyle()}/>
 				<Button variant="contained" style={getButtonStyle()}onClick= {(event)=>{handleAddFormSubmit(event)}}>Submit</Button>
 			</div>
 		</div>

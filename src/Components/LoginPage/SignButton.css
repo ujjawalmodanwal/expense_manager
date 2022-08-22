@@ -59,12 +59,23 @@ img{
 
 @media (max-width: 880px){
     .Signin-already{
+        width: 265px !important;
+        height: 43px;
         margin: 0 0 2vh 0;
     }
     .SignButton{
+        width: 265px !important;
+        height: 43px;
         margin: 0 0 2vh 0;
     }
     .SignButton-Email{
+        width: 265px !important;
+        height: 43px;
         margin: 0 0 2vh 0;
-    }    
+    }  
+    img{
+        margin: 0.5vw;
+        width:8%;
+        height:50%;
+    }  
 }

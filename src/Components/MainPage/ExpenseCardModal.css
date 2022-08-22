@@ -91,19 +91,20 @@
 
 @media (max-width:880px){
   .modal-window-wrapper{
-    height: 62vh;
-    width:42vh;
+    height: 480px;
+    width:325px;
     border-radius: 5px;
     overflow: scroll;
   }
   .total-spent{
     position: relative;
-    bottom:20vh;
+    bottom:154.880px;
+    font-size: 16px;
   }
   .modal-body{
-    width: 41vh;
-    height: 45vh;
-    margin: 3vh 0 0 0;
+    width: 317.5px;
+    height: 348px;
+    margin: 23.232px 0 0 0;
   }
   .modal-close-icon{
     height: 2vh;

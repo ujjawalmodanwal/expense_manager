@@ -44,7 +44,7 @@ function Register() {
   const windowWidth = window.innerWidth;
   const getStyledTextField = ()=>{
     const styleTextField1={maxWidth: '45vh', maxHeight:'10vh', minWidth:'45vh', minHeight:'10vh', marginLeft:'4vh'};
-    const styleTextField2={maxWidth: '35vh', maxHeight:'10vh', minWidth:'35vh', minHeight:'10vh'};
+    const styleTextField2={maxWidth: '260px', maxHeight:'23px', minWidth:'260px', minHeight:'23px', margin: '25px'};
     if(windowWidth>880){
         return(styleTextField1)
     }
@@ -53,7 +53,7 @@ function Register() {
 
   const getStyledButton = () => {
     const styleButton1 = {maxWidth: '15vh', maxHeight:'6vh', minWidth:'15vh', minHeight:'6vh', marginLeft:'4vh', fontWeight:'bold'}
-    const styleButton2 = {maxWidth: '10vh', maxHeight:'4vh', minWidth:'10vh', minHeight:'4vh', fontWeight:'bold'}
+    const styleButton2 = {maxWidth: '80px', maxHeight:'35px', minWidth:'80px', minHeight:'35px', fontWeight:'bold', fontSize:'12px', marginTop:'30px'}
     if(windowWidth>880){
         return(styleButton1)
     }
@@ -71,10 +71,10 @@ function Register() {
           <div className='subcall1'>
               Register
           </div>
-          <TextField id="outlined-basic" name="name" value={name} label="Name" style={getStyledTextField()} variant="outlined" onChange={(event)=>setName(event.target.value)}/>
-          <TextField id="outlined-basic" name="email" value={email} label="Email" style={getStyledTextField()} variant="outlined" onChange={(event)=>setEmail(event.target.value)} />
-          <TextField id="outlined-basic" name="mobile" value={mobile} label="Mobile" style={getStyledTextField()} variant="outlined" onChange={(event)=>setMobile(event.target.value)} />
-          <TextField id="outlined-basic" name="password" value={password} label="Password" style={getStyledTextField()} variant="outlined" onChange={(event)=>setPassword(event.target.value)}/>
+          <TextField id="outlined-basic" type='name' name="name" value={name} label="Name" style={getStyledTextField()} variant="outlined" onChange={(event)=>setName(event.target.value)}/>
+          <TextField id="outlined-basic" type='email' name="email" value={email} label="Email" style={getStyledTextField()} variant="outlined" onChange={(event)=>setEmail(event.target.value)} />
+          <TextField id="outlined-basic" type='mobile' name="mobile" value={mobile} label="Mobile" style={getStyledTextField()} variant="outlined" onChange={(event)=>setMobile(event.target.value)} />
+          <TextField id="outlined-basic" type='password' name="password" value={password} label="Password" style={getStyledTextField()} variant="outlined" onChange={(event)=>setPassword(event.target.value)}/>
           <Button style={getStyledButton()}variant="contained" onClick={handleRegisterSubmit} >Register</Button>
           <div className='account-sign-in'>
               Already have an account?

@@ -38,7 +38,7 @@
         position: absolute;
         background-color: #0093cd;
         width:100%;
-        bottom: 0vh !important;
+        top: 20vh !important;
     }
     .right-panel{
         position: absolute;
@@ -51,20 +51,27 @@
         background-color: white;
     }
     .mainCall{
-        font-size: 8vw !important;
+        font-size: 35px !important;
         font-weight: 800 !important;
-        margin: 2vh !important;
-        width: 42vh!important;
+        width: 284px !important;
+        height: 80px!important;
+        margin: 13.52px;
+        display: flex;
+        justify-content: center;
     }
     .subcall1{
-        font-size: 5vw;
+        font-size: 16.76px !important;
         font-weight: 800;
-        margin: 2vh;
+        margin: 13.52px 0 0 0;
+        width: 130px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
     }
 
     .account-sign-in{
         margin: 6vh 0 1vh 0 !important;
-        font-size: 2.2vh;
+        font-size: 17px;
         font-weight: 800;
     }
 }

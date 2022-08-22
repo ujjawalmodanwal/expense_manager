@@ -7,6 +7,7 @@ import Google from '../../Resources/Images/google_logo.png';
 import Error from './Error';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import Helmet from 'react-helmet';
 
 function Login() {
 
@@ -47,7 +48,7 @@ function Login() {
     const windowWidth = window.innerWidth;
   const getStyledTextField = ()=>{
     const styleTextField1={maxWidth: '45vh', maxHeight:'10vh', minWidth:'45vh', minHeight:'10vh', marginLeft:'4vh'};
-    const styleTextField2={maxWidth: '35vh', maxHeight:'10vh', minWidth:'35vh', minHeight:'10vh'};
+    const styleTextField2={maxWidth: '260px', maxHeight:'23px', minWidth:'260px', minHeight:'23px', margin: '25px'};
     if(windowWidth>880){
         return(styleTextField1)
     }
@@ -55,7 +56,7 @@ function Login() {
   }
   const getStyledButton = () => {
     const styleButton1 = {maxWidth: '15vh', maxHeight:'6vh', minWidth:'15vh', minHeight:'6vh', marginLeft:'4vh', fontWeight:'bold'}
-    const styleButton2 = {maxWidth: '10vh', maxHeight:'4vh', minWidth:'10vh', minHeight:'4vh', fontWeight:'bold'}
+    const styleButton2 = {maxWidth: '70px', maxHeight:'30px', minWidth:'70px', minHeight:'30px', fontWeight:'bold', fontSize:'12px'}
     if(windowWidth>880){
         return(styleButton1)
     }
@@ -64,6 +65,9 @@ function Login() {
   
   return (
     <div className='main-container'>
+         <Helmet>
+              <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        </Helmet>
         <div className='left-panel'></div>
         <div className='right-panel'>
             <div className = 'mainCall'>
@@ -72,14 +76,14 @@ function Login() {
             <div className='subcall1'>
                 Login
             </div>
-            <TextField id="outlined-basic" name="email" label="Email" style={getStyledTextField()} value ={email} variant="outlined" onChange={(event)=>setEmail(event.target.value)}/>
-            <TextField id="outlined-basic" name="password" label="Password" style={getStyledTextField()} value={password} variant="outlined" onChange={(event)=>setPassword(event.target.value)}/>
+            <TextField id="outlined-basic" type='email' name="email" label="Email" style={getStyledTextField()} value ={email} variant="outlined" onChange={(event)=>setEmail(event.target.value)}/>
+            <TextField id="outlined-basic" type='password'name="password" label="Password" style={getStyledTextField()} value={password} variant="outlined" onChange={(event)=>setPassword(event.target.value)}/>
             {error && <Error message = {error}/>}
             <div className='action-buttons'>
             <Button onClick={handleLoginSubmit}style={getStyledButton()}variant="contained" >Login</Button>
             <div className='forgot-password'>
                 Forgot Password?
-            <Button style={{maxWidth: '8vh', maxHeight:'4vh', minWidth:'8vh', minHeight:'4vh', margin:'1vh 0 0 5vh', fontWeight:'bold'}}variant="contained" >Click</Button>
+            <Button style={{maxWidth: '50px', maxHeight:'25px', minWidth:'50px', minHeight:'25px', margin:'7px 0 0 25px', fontWeight:'bold', fontSize:'10px'}}variant="contained" >Click</Button>
             </div>
                 
             </div>

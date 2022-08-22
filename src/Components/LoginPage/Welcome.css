@@ -20,9 +20,9 @@
 }
 
 .subcall1{
-    font-size: 2vw;
-    font-weight: 800;
-    margin: 4vw 0 1vw 2vw;
+    font-size: 2vw !important;
+    font-weight: 800 !important;
+    margin: 4vw 0 0 2vw !important;
 }
 
 .or-separator{
@@ -66,7 +66,7 @@
         position: absolute;
         background-color: #0093cd;
         width:100%;
-        bottom: 0vh !important;
+        top:20vh;
     }
     .rightPanel{
         position: absolute;
@@ -83,11 +83,17 @@
         font-weight: 800 !important;
         margin: 2vh !important;
         width: 42vh!important;
+        display: flex;
+        justify-content: center;
     }
     .subcall1{
-        font-size: 5vw;
+        font-size: 16.76px !important;
         font-weight: 800;
-        margin: 2vh;
+        margin: 13.52px 0 10px 0 !important;
+        width: 130px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
     }
 
     .account-sign-in{

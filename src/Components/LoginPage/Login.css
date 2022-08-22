@@ -20,7 +20,7 @@
 .subcall1{
     font-size: 2vw;
     font-weight: 800;
-    margin: 4vw 0 1vw 2vw;
+    margin: 4vw 0 0 2vw;
 }
 .account-register{
     margin: 2vw 0 2vw 2vw !important;
@@ -50,7 +50,8 @@
         position: absolute;
         background-color: #0093cd;
         width:100%;
-        bottom: 0vh !important;
+        top:20vh !important;
+        
     }
     .right-panel{
         position: absolute;
@@ -63,15 +64,22 @@
         background-color: white;
     }
     .mainCall{
-        font-size: 8vw !important;
+        font-size: 35px !important;
         font-weight: 800 !important;
-        margin: 2vh !important;
-        width: 42vh!important;
+        margin: 13.52px !important;
+        width: 284px!important;
+        height: 80px;
+        display: flex;
+        justify-content: center;
     }
     .subcall1{
-        font-size: 5vw;
+        font-size: 16.76px !important;
         font-weight: 800;
-        margin: 2vh;
+        margin: 13.52px 0 0 0 ;
+        width: 130px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
     }
 
     .account-sign-in{
@@ -80,12 +88,18 @@
         font-weight: 800;
     }
     .action-buttons{
-        width: 35vh;
+        width: 237px;
+        height: 40px;
+        margin: 30px 0 0 0;
+        font-size: 12px;
     }
     .account-register{
-        margin-top: 6vh !important;
-        font-size: 4.2vw;
+        margin-top: 23px !important;
+        font-size: 20px;
         font-weight: 800;
+    }
+    .forgot-password{
+        height: 18px;
     }
 
 }
