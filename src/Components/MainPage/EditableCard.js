@@ -1,23 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import closeIcon from '../../Resources/Images/close_icon.png';
 import "./ExpenseCard.css";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
 function EditableCard(props) {
-
 	const getEditableCard = () =>{
 		return(
 			<div className='expenseCard-addCard' 
 				style={{backgroundColor:'#cccccc'}}>
 				<div className='expenseCard-textfield'>
+					<form onChange = {(event) => props.handleEditCardChange(event, props.cardData)}>
 					<TextField
 						name="title"
 						variant="outlined" 
 						label = "Field"
 						size="small"
 						style={{margin:'1vh'}}
-						onChange={(event)=>props.handleEditCardChange(event, props.cardData)}
+						onChange={(event)=> {props.cardData.title = event.target.value}}
 						defaultValue = {props.cardData.title}
 					/>
 					<TextField
@@ -26,9 +26,10 @@ function EditableCard(props) {
 						label = "Color"
 						size="small"
 						style={{margin:'1vh'}}
-						onChange={(event)=>props.handleEditCardChange(event, props.cardData)}
+						onChange={(event)=> {props.cardData.color = event.target.value}}
 						defaultValue = {props.cardData.color}
 					/>
+					</form>
 					<Button className='expenseCard-saveButton' variant="contained" onClick= {(event)=>props.handleEditCardSubmit(event, props.cardData)}>Save</Button>
 				</div>
 				<img className='expenseCard-cancelIcon' src={closeIcon} onClick= {props.handleCancelClick}/>

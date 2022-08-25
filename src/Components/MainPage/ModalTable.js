@@ -5,86 +5,109 @@ import './ModalTable.css';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-function Table() {
+function Table(props) {
 
-
-
-	const fetchData = async()=>{
-		const {data} = await axios.get("/data")
-		const table_data = data.table_data;
-		setData(table_data);
+	const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+	const fetchTable = async ()=>{
+		const {data} = await axios.get(`/api/tables/${props.card_id}`,
+		 {headers:{
+			"Authorization": `Bearer ${userInfo.token}`
+		}})
+		setData(data);
+		for(let i=0;i<data.length;i++){
+			data[i].id = i+1;
+		}
 	}
-	useEffect(()=>{
-		fetchData();
-	}, [])
+
+	
+
 
 
 	const [datas, setData] = useState([])
-	const newId = datas.length+1;
+	useEffect(()=>{
+		fetchTable();
+	},[])
 	const [addFormData, setAddFormData] = useState({
-		 Goods:'',
-		 Price:'',
-		 Date:''
+		 goods:'',
+		 price:'',
+		 date:''
 	})
 	const handleAddFormChange = (event)=>{
 		event.preventDefault();
-
 		const fieldName = event.target.getAttribute('name')
 		const fieldValue = event.target.value;
-
 		const newFormData = {...addFormData};
 		newFormData[fieldName]=fieldValue;
 		setAddFormData(newFormData);
 	}
-
-	const handleAddFormSubmit = (event) =>{
+	const handleAddFormSubmit = async (event) =>{
 		event.preventDefault();
 	    const newRow = {
-			id:newId,
-			Goods: addFormData.Goods,
-			Price: addFormData.Price,
-			Date: addFormData.Date,
+			goods: addFormData.goods,
+			price: addFormData.price,
+			date: addFormData.date,
 		};
+		try {
+			const config={
+				headers:{
+					"Authorization": `Bearer ${userInfo.token}`
+				}
+			}
+			await axios.post(`/api/tables/create/${props.card_id}`,{
+				newRow
+			}, config)
+		} catch (error) {
+			console.log(error)
+		}
 		const newData = [...datas, newRow ];
+		for(let i=0;i<newData.length;i++){
+			newData[i].id = i+1;
+		}
 		setData(newData);
 	};
 
 
-	const [editFormData, setEditFormData]= useState({
-		Goods:'',
-		Price:'',
-		Date:''
-	})
+
+	const editFormData= {
+		goods:'',
+		price:'',
+		date:''
+	}
 	const [editRowId, setEditRowId] = useState(null);
 	const handleEditClick = (event, row)=>{
 		event.preventDefault();
-		setEditRowId(row.id);
-		const formValues={
-			Goods: row.Goods,
-			Price: row.Price,
-			Date: row.Date,
-		}
+		setEditRowId(row._id);
 	}
 	const handleEditFormChange = (event, prevData)=>{
 		event.preventDefault();
 		const fieldName = event.target.getAttribute("name");
 		const fieldValue = event.target.value;
-
-		console.log(fieldValue)
-		const newFormData={...prevData};
-		newFormData[fieldName]= fieldValue ;
-		setEditFormData(newFormData);
+		editFormData.goods = prevData.goods;
+		editFormData.price = prevData.price;
+		editFormData.date = prevData.date;
+		editFormData[fieldName] = fieldValue;
 	}
-	const handleEditFormSubmit = (event)=>{
+	const handleEditFormSubmit = async (event)=>{
 		event.preventDefault();
 		const editedRow = {
-			id: editRowId,
-			Goods: editFormData.Goods,
-			Price: editFormData.Price,
-			Date: editFormData.Date 
+			goods: editFormData.goods,
+			price: editFormData.price,
+			date: editFormData.date 
 		}
 		const newRow = [...datas];
-		const index = datas.findIndex((data)=>data.id===editRowId);
+		const index = datas.findIndex((data)=>data._id===editRowId);
+		try {
+			const config={
+				headers:{
+					"Authorization": `Bearer ${userInfo.token}`
+				}
+			}
+			await axios.put(`/api/tables/${editRowId}`,{
+				editedRow
+			}, config)
+		} catch (error) {
+			console.log(error)
+		}
 		newRow[index]=editedRow;
 		setData(newRow);
 		setEditRowId(null);
@@ -94,10 +117,21 @@ function Table() {
 	}
 
 
-	const handleDeleteClick = (rowDataId)=>{
+
+	const handleDeleteClick = async (rowDataId)=>{
 		const newDatas = [...datas];
-		const index = datas.findIndex((data)=>data.id===rowDataId);
+		const index = datas.findIndex((data)=>data._id===rowDataId);
 		newDatas.splice(index, 1);
+		try {
+			const config={
+				headers:{
+					"Authorization": `Bearer ${userInfo.token}`
+				}
+			}
+			await axios.delete(`/api/tables/${rowDataId}`, config)
+		} catch (error) {
+			console.log(error)
+		}
 		setData(newDatas);
 		const array_length = newDatas.length;
 		for(let i=0;i<array_length;i++){
@@ -106,6 +140,7 @@ function Table() {
 		setData(newDatas);
 	}
  
+
 	const windowWidth = window.innerWidth;
 	const getTextFieldStyle  = () =>{
 		if(windowWidth>880){
@@ -131,7 +166,7 @@ function Table() {
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Goods</th>
+								<th>Description</th>
 								<th>Price</th>
 								<th>Date</th>
 								<th>Actions</th>
@@ -140,8 +175,8 @@ function Table() {
 						<tbody>
 							{datas.map((data)=>(
 								<Fragment>
-									{editRowId === data.id ?(
-										<EditableRow Id={data.id} editFormData={data} handleEditFormChange={handleEditFormChange} handleCancelClick={handleCancelClick}/>
+									{editRowId === data._id ?(
+										<EditableRow Id={data._id} editFormData={data} handleEditFormChange={handleEditFormChange} handleCancelClick={handleCancelClick}/>
 									):(
 										<ReadOnlyRow data={data} handleEditClick={handleEditClick} handleDeleteClick = {handleDeleteClick}/>
 									)}
@@ -154,15 +189,15 @@ function Table() {
 			<div className='table-new-row'>
 				<h4 className='add-new-data'>Add New Data</h4>
 				<TextField id="outlined-basic" 
-							name ="Goods" 
+							name ="goods" 
 							type='text'
-							label="Enter Goods" 
+							label="Enter Description" 
 							size="small" 
 							variant="outlined" 
 							onChange={(event)=>handleAddFormChange(event)}
 							style={getTextFieldStyle()}/> 
-				<TextField id="outlined-basic" type='number' name = "Price" label="Enter Price" size="small" variant="outlined" onChange={(event)=>handleAddFormChange(event)} style={getTextFieldStyle()}/> 
-				<TextField id="outlined-basic" type='date' name = "Date" label="Enter Date" size="small" variant="outlined" onChange={(event)=>handleAddFormChange(event)} style={getTextFieldStyle()}/>
+				<TextField id="outlined-basic" type='number' name = "price" label="Enter Price" size="small" variant="outlined" onChange={(event)=>handleAddFormChange(event)} style={getTextFieldStyle()}/> 
+				<TextField id="outlined-basic" type='date' name = "date" size="small" variant="outlined" onChange={(event)=>handleAddFormChange(event)} style={getTextFieldStyle()}/>
 				<Button variant="contained" style={getButtonStyle()}onClick= {(event)=>{handleAddFormSubmit(event)}}>Submit</Button>
 			</div>
 		</div>

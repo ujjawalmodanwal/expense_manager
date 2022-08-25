@@ -14,7 +14,7 @@ function ExpenseCardModal(props) {
                     <img src = {closeIcon} className='modal-close-icon' alt='closeIcon' onClick={props.handleClick}/>
                 </div>
                 <div className='modal-body'>
-                    <ModalTable/>
+                    <ModalTable card_id = {props.card_id} isOpen = {props.isOpen}/>
                 </div>
                 <div className='modal-footer'>
                     <h4 className='total-spent'>Total Spent:</h4>

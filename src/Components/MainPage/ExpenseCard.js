@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './ExpenseCard.css';
-import Modals from './ExpenseCardModal';
+import ExpenseCardModal from './ExpenseCardModal';
 import Modal from "@mui/material/Modal";
 import plusIcon from '../../Resources/Images/plus_icon.png';
 import menu_dots from '../../Resources/Images/three_dots.png';
@@ -24,10 +24,11 @@ function ExpenseCard(props) {
 
 
 	const getModalWindow =(isMenu)=>{
+		
 		if(!isMenu && isOpen){
 			return (
 				<Modal open={isOpen} onClose={handleModalWindow} >
-					<Modals handleClick={handleModalWindow} />
+					<ExpenseCardModal card_id ={props.cardData._id} getData={isOpen} handleClick={handleModalWindow} />
 				</Modal>
 			)
 		}
@@ -37,7 +38,7 @@ function ExpenseCard(props) {
 			return (
 				<div className='expenseCard-menu-window'>
 					<div className='expenseCard-menuBox'onClick={(event) => props.handleEditClick(event, props.cardData)} >Edit</div>
-					<div className='expenseCard-menuBox' onClick={()=>props.handleDeleteClick(props.cardData.card_id)}>Delete</div>
+					<div className='expenseCard-menuBox' onClick={()=>props.handleDeleteClick(props.cardData._id)}>Delete</div>
 				</div>
 			)
 		}
@@ -51,7 +52,7 @@ function ExpenseCard(props) {
 					onClick= {handleModalWindow}>
 					<div className='expenseCard-title'>
 						{props.cardData.title}
-						{props.cardData.card_id}
+						
 					</div>
 					<div className='expenseCard-Pricetag'>Total Spent</div>
 					<div className='expenseCard-totalSpent'>

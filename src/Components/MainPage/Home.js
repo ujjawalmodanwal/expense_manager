@@ -8,17 +8,21 @@ import axios from 'axios';
 
 function Home() {
 
-
-
-	const fetchData = async()=>{
-		const {data} = await axios.get("/data")
-		const CardsData = data.CardsData;
+	const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+	const fetchCardsData = async()=>{
+		const {data} = await axios.get("/api/cards/", {
+            headers:{
+				"Authorization": `Bearer ${userInfo.token}`
+            }})
+		const CardsData = data;
 		updateCardsData(CardsData);
 	}
-	
 	useEffect(()=>{
-		fetchData();
+		fetchCardsData();
 	}, [])
+
+
+
 	
 	const [cardsData, updateCardsData] = useState([]);
 	const NumberOfCards= cardsData.length;
@@ -28,7 +32,6 @@ function Home() {
 		setIsAddCard(!isAddCard);
 	}
 	const [addCardData, setAddCardData] = useState({
-        card_id: '',
         title: '',
         total_price: '',
         color: '',
@@ -41,14 +44,25 @@ function Home() {
 		newCardData[fieldName]=fieldValue;
 		setAddCardData(newCardData);
 	}
-	const handleAddCardSubmit = (event) =>{
+	const handleAddCardSubmit = async (event) =>{
 		event.preventDefault();
 	    const newCard = {
-			card_id:NumberOfCards+1,
 			title: addCardData.title,
 			total_price: "0",
 			color: addCardData.color,
 		};
+		try {
+			const config={
+				headers:{
+					"Authorization": `Bearer ${userInfo.token}`
+				}
+			}
+			const {data} = await axios.post('/api/cards/create/',{
+				newCard
+			}, config)
+		} catch (error) {
+			console.log(error)
+		}
 		const newData = [...cardsData, newCard ];
 		updateCardsData(newData);
 		setIsAddCard(true);
@@ -57,8 +71,8 @@ function Home() {
 	
 
 
+	//Edit cards data section 
 	const [editCardData, setEditCardData]= useState({
-		card_id: '',
         title: '',
         total_price: '',
         color: '',
@@ -66,28 +80,38 @@ function Home() {
 	const [editCardId, setEditCardId] = useState(null);
 	const handleEditClick = (event, card)=>{
 		event.preventDefault();
-		setEditCardId(card.card_id);
+		setEditCardId(card._id);
 	}
 	const handleEditCardChange = (event, cardData)=>{
 		event.preventDefault();
-		console.log(cardData)
 		const fieldName = event.target.getAttribute("name");
 		const fieldValue = event.target.value;
 		const newCardData={...cardData};
 		newCardData[fieldName]= fieldValue;
 		setEditCardData(newCardData);
 	}
-	const handleEditCardSubmit = (event, cardData)=>{
+	const handleEditCardSubmit = async (event, cardData)=>{
 		event.preventDefault();
 		const editedCard = {
-			card_id:editCardId,
 			title: editCardData.title,
 			total_price: cardData.total_price,
 			color: editCardData.color,
 		
 		}
 		const newCardData = [...cardsData];
-		const index = cardsData.findIndex((data)=>data.card_id===editCardId);
+		const index = cardsData.findIndex((data)=>data._id===editCardId);
+		try {
+			const config={
+				headers:{
+					"Authorization": `Bearer ${userInfo.token}`
+				}
+			}
+			const {data} = await axios.put(`/api/cards/${editCardId}`,{
+				editedCard
+			}, config)
+		} catch (error) {
+			console.log(error)
+		}
 	    newCardData[index]=editedCard;
 		updateCardsData(newCardData);
 		setEditCardId(null);
@@ -96,17 +120,19 @@ function Home() {
 		setEditCardId(null);
 	}
 
-	const handleDeleteClick = (cardDataId)=>{
-		console.log("delete",cardDataId)
+	const handleDeleteClick = async (cardDataId)=>{
 		const newDatas = [...cardsData];
-		console.log(newDatas)
-		const index = cardsData.findIndex((card)=>card.card_id === cardDataId);
-		console.log("index", index)
+		const index = cardsData.findIndex((card)=>card._id === cardDataId);
 		newDatas.splice(index, 1);
-		updateCardsData(newDatas);
-		const array_length = newDatas.length;
-		for(let i=0;i<array_length;i++){
-			newDatas[i].card_id = i+1;
+		try {
+			const config={
+				headers:{
+					"Authorization": `Bearer ${userInfo.token}`
+				}
+			}
+			const {data} = await axios.delete(`/api/cards/${cardDataId}`, config)
+		} catch (error) {
+			console.log(error)
 		}
 		updateCardsData(newDatas);
 	}
@@ -119,7 +145,7 @@ function Home() {
 			<div className='card-section'>
 				{cardsData.map((cardData) => (
 					<Fragment>
-						{editCardId === cardData.card_id ? (
+						{editCardId === cardData._id ? (
 							<EditableCard isSubmit={false}
 										  handleEditCardChange = {handleEditCardChange} 
 							              handleEditCardSubmit = {handleEditCardSubmit} 
