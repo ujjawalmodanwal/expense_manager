@@ -13,8 +13,10 @@ function ExpenseCard(props) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isMenu, setIsMenu] = useState(false);
 	
-
-
+	const [totalPrice, setTotalPrice] = useState(props.cardData.total_price)
+	const updateTotalPrice = (price)=>{
+		setTotalPrice(price);
+	}
 	const handleModalWindow = () => {
 		setIsOpen(!isOpen);
 	}
@@ -28,7 +30,7 @@ function ExpenseCard(props) {
 		if(!isMenu && isOpen){
 			return (
 				<Modal open={isOpen} onClose={handleModalWindow} >
-					<ExpenseCardModal card_id ={props.cardData._id} getData={isOpen} handleClick={handleModalWindow} />
+					<ExpenseCardModal cardData ={props.cardData} handleClick={handleModalWindow} fetchCardsData={props.fetchCardsData} updateTotalPrice={updateTotalPrice}/>
 				</Modal>
 			)
 		}
@@ -52,11 +54,10 @@ function ExpenseCard(props) {
 					onClick= {handleModalWindow}>
 					<div className='expenseCard-title'>
 						{props.cardData.title}
-						
 					</div>
 					<div className='expenseCard-Pricetag'>Total Spent</div>
 					<div className='expenseCard-totalSpent'>
-						Rs. {props.cardData.total_price}
+						Rs. {totalPrice}
 					</div>
 					<img className='expenseCard-menuDots' alt="menu" src={menu_dots} onClick={handleMenuClick}/>
 					{getMenuWindow(isMenu)}

@@ -25,7 +25,7 @@ function Home() {
 
 	
 	const [cardsData, updateCardsData] = useState([]);
-	const NumberOfCards= cardsData.length;
+
 
 	const [isAddCard, setIsAddCard] = useState(true);
 	const handleClickOnAddCard = () => {
@@ -66,6 +66,7 @@ function Home() {
 		const newData = [...cardsData, newCard ];
 		updateCardsData(newData);
 		setIsAddCard(true);
+		fetchCardsData();
 	};
 	
 	
@@ -96,7 +97,6 @@ function Home() {
 			title: editCardData.title,
 			total_price: cardData.total_price,
 			color: editCardData.color,
-		
 		}
 		const newCardData = [...cardsData];
 		const index = cardsData.findIndex((data)=>data._id===editCardId);
@@ -151,13 +151,13 @@ function Home() {
 							              handleEditCardSubmit = {handleEditCardSubmit} 
 										  handleCancelClick = {handleCancelClick}
 										  handleEditClick = {handleEditClick}
-								
 										  cardData = {cardData}/>
-							):(
+							):( 
 							<ExpenseCard cardData={cardData} 
 										 isAddCard={false} 
 										 handleDeleteClick = {handleDeleteClick}
-										 handleEditClick = {handleEditClick}/>
+										 handleEditClick = {handleEditClick}
+										 fetchCardsData = {fetchCardsData}/>
 										 
 							)
 						}
@@ -166,7 +166,8 @@ function Home() {
 				<Fragment>
 					{isAddCard ? <ExpenseCard isAddCard = {true} 
 											  cardData = {0}
-											  handleClickOnAddCard = {handleClickOnAddCard}/> 
+											  handleClickOnAddCard = {handleClickOnAddCard}
+											  /> 
 
 					: <EditableCard isSubmit={true}
 									handleCancel={handleClickOnAddCard} 

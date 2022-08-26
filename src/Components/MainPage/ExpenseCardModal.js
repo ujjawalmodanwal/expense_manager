@@ -4,7 +4,6 @@ import closeIcon from '../../Resources/Images/close_icon.png';
 import ModalTable from './ModalTable';
 
 function ExpenseCardModal(props) {
-	const [openMenu, setOpenMenu] = useState(false)
    
     
   return (
@@ -14,10 +13,10 @@ function ExpenseCardModal(props) {
                     <img src = {closeIcon} className='modal-close-icon' alt='closeIcon' onClick={props.handleClick}/>
                 </div>
                 <div className='modal-body'>
-                    <ModalTable card_id = {props.card_id} isOpen = {props.isOpen}/>
+                    <ModalTable fetchCardsData={props.fetchCardsData} cardData = {props.cardData} updateTotalPrice={props.updateTotalPrice} isOpen = {props.isOpen}/>
                 </div>
                 <div className='modal-footer'>
-                    <h4 className='total-spent'>Total Spent:</h4>
+                    <h4 className='total-spent'>Total Spent: {props.cardData.total_price}</h4>
                 </div>
             </div>
         </div>

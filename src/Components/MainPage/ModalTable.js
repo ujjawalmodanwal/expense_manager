@@ -9,7 +9,7 @@ function Table(props) {
 
 	const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 	const fetchTable = async ()=>{
-		const {data} = await axios.get(`/api/tables/${props.card_id}`,
+		const {data} = await axios.get(`/api/tables/${props.cardData._id}`,
 		 {headers:{
 			"Authorization": `Bearer ${userInfo.token}`
 		}})
@@ -21,12 +21,42 @@ function Table(props) {
 
 	
 
-
-
 	const [datas, setData] = useState([])
 	useEffect(()=>{
 		fetchTable();
 	},[])
+
+
+	const updateTotalPrice = (isDelete, price) =>{
+		let tp = props.cardData.total_price;
+		if(isDelete === 0 ){tp += Number(price);}
+		if(isDelete === 1 ){tp -= Number(price);}
+		props.updateTotalPrice(tp);
+		updateTPinDB(tp);
+	}
+
+	const updateTPinDB = async (tp)=>{
+		const editedCard = {
+			title: props.cardData.title,
+			total_price: tp,
+			color: props.cardData.color,
+		}
+		try {
+			const config={
+				headers:{
+					"Authorization": `Bearer ${userInfo.token}`
+				}
+			}
+			await axios.put(`/api/cards/${props.cardData._id}`,{
+				editedCard
+			}, config)
+		} catch (error) {
+			console.log(error)
+		}
+		fetchTable();
+		props.fetchCardsData();
+	}
+
 	const [addFormData, setAddFormData] = useState({
 		 goods:'',
 		 price:'',
@@ -53,7 +83,7 @@ function Table(props) {
 					"Authorization": `Bearer ${userInfo.token}`
 				}
 			}
-			await axios.post(`/api/tables/create/${props.card_id}`,{
+			await axios.post(`/api/tables/create/${props.cardData._id}`,{
 				newRow
 			}, config)
 		} catch (error) {
@@ -64,8 +94,11 @@ function Table(props) {
 			newData[i].id = i+1;
 		}
 		setData(newData);
-	};
+		fetchTable();
+		props.fetchCardsData();
+		updateTotalPrice(0, addFormData.price)
 
+	};
 
 
 	const editFormData= {
@@ -78,7 +111,8 @@ function Table(props) {
 		event.preventDefault();
 		setEditRowId(row._id);
 	}
-	const handleEditFormChange = (event, prevData)=>{
+
+	const handleEditFormChange = (event, prevData, initialPrice)=>{
 		event.preventDefault();
 		const fieldName = event.target.getAttribute("name");
 		const fieldValue = event.target.value;
@@ -87,8 +121,13 @@ function Table(props) {
 		editFormData.date = prevData.date;
 		editFormData[fieldName] = fieldValue;
 	}
-	const handleEditFormSubmit = async (event)=>{
+
+
+	const handleEditFormSubmit = async (event, initialPrice)=>{
 		event.preventDefault();
+		console.log("new",editFormData.price, "old",initialPrice, "difference", editFormData.price-Number(initialPrice));
+
+		
 		const editedRow = {
 			goods: editFormData.goods,
 			price: editFormData.price,
@@ -110,6 +149,9 @@ function Table(props) {
 		}
 		newRow[index]=editedRow;
 		setData(newRow);
+		updateTotalPrice(0, editFormData.price-Number(initialPrice));
+		fetchTable();
+		props.fetchCardsData();
 		setEditRowId(null);
 	}
 	const handleCancelClick =()=>{
@@ -121,6 +163,7 @@ function Table(props) {
 	const handleDeleteClick = async (rowDataId)=>{
 		const newDatas = [...datas];
 		const index = datas.findIndex((data)=>data._id===rowDataId);
+		updateTotalPrice(1, datas[index].price);
 		newDatas.splice(index, 1);
 		try {
 			const config={
@@ -138,6 +181,8 @@ function Table(props) {
 			newDatas[i].id = i+1;
 		}
 		setData(newDatas);
+		props.fetchCardsData();
+		fetchTable();
 	}
  
 
@@ -176,7 +221,7 @@ function Table(props) {
 							{datas.map((data)=>(
 								<Fragment>
 									{editRowId === data._id ?(
-										<EditableRow Id={data._id} editFormData={data} handleEditFormChange={handleEditFormChange} handleCancelClick={handleCancelClick}/>
+										<EditableRow Id={data._id} editFormData={data} handleEditFormChange={handleEditFormChange} handleEditFormSubmit = {handleEditFormSubmit} handleCancelClick={handleCancelClick}/>
 									):(
 										<ReadOnlyRow data={data} handleEditClick={handleEditClick} handleDeleteClick = {handleDeleteClick}/>
 									)}

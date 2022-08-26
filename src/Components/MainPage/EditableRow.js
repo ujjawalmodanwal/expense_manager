@@ -1,8 +1,10 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 
-function EditableRow({Id, editFormData, handleEditFormChange, handleCancelClick}) {
+function EditableRow({Id, editFormData, handleEditFormChange,handleEditFormSubmit, handleCancelClick}) {
     const boxStyle = {maxWidth: '8vh !important', maxHeight:'2vh !important', minWidth: '8vh !important', minHeight: '2vh !important'}
+    const initialPrice = editFormData.price;
+   
     return (
     <tr>
             <td>
@@ -44,7 +46,7 @@ function EditableRow({Id, editFormData, handleEditFormChange, handleCancelClick}
                 />
             </td>
         <td>
-            <button type="submit">save</button>
+            <button type="submit" onClick = {(event)=>handleEditFormSubmit(event, initialPrice )}>save</button>
             <button type="button" onClick={handleCancelClick}>Cancel</button>
         </td>
     </tr>
